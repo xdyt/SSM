@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.Gra2Mapper">
+  <!-- 查询所有成绩信息 -->
+<select id="selectGra2" resultType="Gra2">
+    SELECT * FROM gra2;
+</select>
+<!-- 添加成绩信息 -->
+  <insert id="addGra" parameterType="Gra2">
+        <selectKey keyProperty="graid" order="AFTER" resultType="int">
+            select LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO gra2 SET stunum=#{stunum},stuname=#{stuname},gralan=#{gralan},gramath=#{gramath},graeng=#{graeng};
+
+
+  </insert>
+</mapper>

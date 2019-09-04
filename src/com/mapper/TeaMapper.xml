@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.TeaMapper">
+	<!-- 教师登陆 -->
+	<select id="tealogin" resultType="Tea" parameterType="Tea">
+		select * from tea where teanum = #{teanum} and teapwd=#{teapwd};
+	</select>
+	
+	<!-- 查询全部 教师信息-->
+	<select id="listM" resultType="Tea">
+		select * from tea
+	</select>
+
+	<!-- 修改教师信息 -->
+	<update id="editM" parameterType="Tea">
+		update tea set
+		teapwd=#{teapwd},teanum=#{teanum},teaname=#{teaname},teasex=#{teasex},teaphone=#{teaphone},
+		teaqq=#{teaqq},teacou=#{teacou}
+		where teaid=#{teaid}
+	</update>
+	
+	<!-- 删除教师信息 -->
+	<delete id="deleteM" parameterType="Tea">
+		delete from tea where teaid=#{teaid}
+	</delete>
+	
+	<!-- 根据ID查询教师信息 -->
+	<select id="getM" parameterType="_int" resultType="Tea">
+		select *from tea where teaid=#{teaid}
+	</select>
+	
+	<!-- 1.修改用户信息 -->
+	<select id="selectTea" parameterType="int" resultType="Stu">
+		SELECT * FROM tea
+		WHERE
+		teaid=#{teaid}
+	</select>
+	<!-- 2.修改用户信息 -->
+	<update id="updateTea" parameterType="Tea">
+		UPDATE tea set
+		teaid=#{teaid},teanum=#{teanum},teaname=#{teaname},teasex=#{teasex},teaphone=#{teaphone},teaqq=#{teaqq},teacou=#{teacou}
+		WHERE teaid=#{teaid}
+	</update>
+	<!-- 添加教师信息 -->
+	<insert id="addtea" parameterType="Tea">
+		insert into tea set
+		teaid=#{teaid},teanum=#{teanum},teaname=#{teaname},teasex=#{teasex},teaphone=#{teaphone},teaqq=#{teaqq},teacou=#{teacou}
+	</insert>
+</mapper>

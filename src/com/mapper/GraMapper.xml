@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.GraMapper">
+   <!-- 查询全部成绩信息 -->
+   <!-- 定义Gra实体类的resultMap -->
+		<resultMap type="Gra" id="graResultMap">
+			<!-- 定义属性配置 -->
+			<result  column="graid" property="graid" javaType="java.lang.Integer"/>
+			<result column="stunum" property="stunum" javaType="java.lang.String"/>
+			<result column="gralan" property="gralan" javaType="java.lang.String"/>
+			<result column="gramath" property="gramath" javaType="java.lang.String"/>
+			<result column="graeng" property="graeng" javaType="java.lang.String"/>
+		</resultMap>
+		<!-- 定义Stu实体类的resultMap -->
+		<resultMap type="Stu" id="stuDeptResultMap" extends="graResultMap">
+			<!-- 学生表中的stuname属性配置 -->
+			<result column="stuname" property="stuname" javaType="java.lang.String"/>
+		</resultMap>
+		
+  <select id="selectGra" resultMap="graResultMap">
+    SELECT g.*,s.stuname FROM gra g LEFT JOIN stu s ON g.stunum=s.stunum;
+  </select>
+  
+   
+</mapper>
